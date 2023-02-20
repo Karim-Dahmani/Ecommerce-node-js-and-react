@@ -4,12 +4,13 @@ import styled from "styled-components";
 import Announcement from "../Components/Announcement";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useHistory } from "react-router";
 
-const KEY = process.env.REACT_APP_STRIPE;
+const KEY = process.env.STRIPE_KEY;
 
 const Container = styled.div``;
 
@@ -39,7 +40,8 @@ const TopButton = styled.button`
   color: ${(props) => props.type === "filled" && "white"};
 `;
 
-const TopTexts = styled.div``;
+const TopTexts = styled.div`
+`;
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
@@ -106,11 +108,13 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
+  
 `;
 
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
+  
 `;
 
 const Hr = styled.hr`
@@ -169,8 +173,7 @@ const Cart = () => {
         });
         history.push("/success", {
           stripeData: res.data,
-          products: cart,
-        });
+          products: cart.total, });
       } catch {}
     };
     stripeToken && makeRequest();
@@ -241,7 +244,7 @@ const Cart = () => {
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Lama Shop"
+              name="melliani"
               image="https://avatars.githubusercontent.com/u/1486366?v=4"
               billingAddress
               shippingAddress
