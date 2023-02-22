@@ -21,6 +21,7 @@ export const sliderItems = [
       bg: "fbf0f4",
     },
   ];
+
   export const categories = [
     {
       id: 1,
@@ -41,6 +42,7 @@ export const sliderItems = [
       cat:"jeans"
     },
   ];
+
   export const popularProducts = [
     {
       id:1,
